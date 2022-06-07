@@ -11,6 +11,43 @@
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li>
+          <%= link_to "Nagano Cake" %>
+        </li>
+        <% if admin_signed_in? %>
+          <li>
+            <%= link_to "商品一覧" %>
+          </li>
+          <li>
+            <%= link_to "会員一覧" %>
+          </li>
+          <li>
+            <%= link_to "注文履歴一覧" %>
+          </li>
+          <li>
+            <%= link_to "ジャンル一覧" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "About" %>
+          </li>
+          <li>
+            <%= link_to "商品一覧" %>
+          </li>
+          <li>
+            <%= link_to "新規登録" %>
+          </li>
+          <li>
+            <%= link_to "ログイン" %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
     <%= yield %>
   </body>
 </html>
