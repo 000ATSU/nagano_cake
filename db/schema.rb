@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_075403) do
+ActiveRecord::Schema.define(version: 2022_06_08_125220) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_075403) do
     t.string "address", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id", null: false
   end
 
   create_table "admins", force: :cascade do |t|
@@ -64,6 +65,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_075403) do
     t.integer "amount", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "items_id", null: false
+    t.integer "customer_id", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -94,6 +97,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_075403) do
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "genre_id", null: false
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -102,6 +106,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_075403) do
     t.integer "production_status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id", null: false
+    t.integer "item_id", null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -115,6 +121,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_075403) do
     t.integer "product_total", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
