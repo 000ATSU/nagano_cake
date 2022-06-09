@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  has_many :genres, dependent: :destroy
+  belongs_to :genre
 
   has_one_attached :item_image
 
