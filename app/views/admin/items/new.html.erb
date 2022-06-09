@@ -2,9 +2,19 @@
 <%= form_with model: @item do |f| %>
   <p>商品画像</p>
   <%= f.file_field :item_image, accept: "image/*" %>
-  <p>Name</p>
-  <%= f.text_field :name, class: "form-control" %>
-  <p>introduction</p>
-  <%= f.text_area :introduction, class: "form-control" %></br>
-  <%= f.submit 'Update User', class: "btn btn-secondary" %>
+  <p>商品名</p>
+  <%= f.text_field :name %>
+  <p>商品説明</p>
+  <%= f.text_area :introduction %>
+  <p>ジャンル</p>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+  <p>税抜価格</p>
+  <%= f.text_field :price %>
+  <%= f.label :price, "円" %>
+  <p>販売ステータス</p>
+  <%= f.radio_button :is_active, true %>
+  <%= f.label :is_active, "販売中"%>
+  <%= f.radio_button :is_active, false %>
+  <%= f.label :is_active, "販売停止中"%><br>
+  <%= f.submit '新規登録' %>
  <% end %>
