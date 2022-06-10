@@ -12,7 +12,6 @@ class Admin::ItemsController < ApplicationController
 
     def index
       @items = Item.all
-      @genre = Genre.find(@item.genre_id).name
     end
 
     def show
