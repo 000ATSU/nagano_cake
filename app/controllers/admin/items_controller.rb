@@ -11,6 +11,8 @@ class Admin::ItemsController < ApplicationController
     end
 
     def index
+      @items = Item.all
+      @genre = Genre.all
     end
 
     def show
