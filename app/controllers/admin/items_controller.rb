@@ -12,12 +12,11 @@ class Admin::ItemsController < ApplicationController
 
     def index
       @items = Item.all
-      @genres = Genre.all
+      @genre = Genre.find(@item.genre_id).name
     end
 
     def show
       @item = Item.find(params[:id])
-      @genres = Genre.all
     end
 
     def edit

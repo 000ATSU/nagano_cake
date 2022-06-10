@@ -4,9 +4,13 @@
 <span>商品説明</span>
 <%= @item.introduction %><br>
 <span>ジャンル</span>
-<%= @genres.name %><br>
+<%= @item.genre_id %><br>
 <span>税抜価格（税込価格）</span>
 <%= @item.price %><br>
 <span>販売ステータス</span>
-<%= @item.is_active %><br>
+<% if @item.is_active == true %>
+  <span>販売中</span>
+<% else %>
+  <span>販売停止中</span>
+<% end %>
 
