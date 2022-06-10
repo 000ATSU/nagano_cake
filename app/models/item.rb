@@ -3,8 +3,6 @@ class Item < ApplicationRecord
 
   has_one_attached :item_image
 
-  enum is_active: {"販売中":true, "販売停止":false}
-
   def get_item_image(width, height)
     unless item_image.attached?
       file_path = Rails.root.join('app/assets/images/default-image.jpg')
