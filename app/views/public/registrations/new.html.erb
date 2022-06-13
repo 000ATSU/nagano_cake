@@ -41,12 +41,12 @@
 
   <div class="field">
     <%= f.label :パスワード（6文字以上） %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.text_field :password, autocomplete: "password" %>
   </div>
 
   <div class="field">
     <%= f.label :パスワード（確認用） %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.text_field :password_confirmation, autocomplete: "password" %>
   </div>
 
   <div class="actions">
