@@ -1,10 +1,10 @@
 class Item < ApplicationRecord
   belongs_to :genre
-
+  has_many :cart_items
   has_one_attached :item_image
-  
+
   def add_tax_price
-    (self.price * 1.08).round
+    (self.price * 1.10).round
   end
 
   def get_item_image(width, height)

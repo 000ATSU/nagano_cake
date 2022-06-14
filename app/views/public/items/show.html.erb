@@ -2,6 +2,9 @@
 <div>
   <h1><%= @item.name %></h1>
   <%= @item.introduction %><br>
-  ￥<%= @item.add_tax_price.to_s(:delimited) %>円
+  ￥<%= @item.add_tax_price.to_s(:delimited) %>（税込）
 </div>
-
+<%= form_with model: @cart_item, url: 'public/cart_items', method: :post do |f| %>
+  <%= f.select :amount, include_blank: "個数を選択" %>
+  <%= f.submit 'カートに入れる'%>
+<% end %>

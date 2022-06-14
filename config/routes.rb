@@ -1,17 +1,10 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'cart_items/new'
-    get 'cart_items/index'
-    get 'cart_items/show'
-  end
   get '/' => 'public/homes#top', as: 'root'
   get '/about' => 'public/homes#about'
 
   namespace :public do
+    resources :cart_items, only:[:index, :update, :destroy, :destroy_all, :create]
     resources :items, only:[:index, :show]
   end
 
