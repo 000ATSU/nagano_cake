@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :public do
     resources :cart_items, only:[:index, :update, :destroy, :destroy_all, :create]
     resources :items, only:[:index, :show]
+    resources :orders, only:[:new, :confirmation, :completion, :index, :show]
   end
 
   namespace :admin do
