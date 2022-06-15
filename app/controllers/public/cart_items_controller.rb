@@ -1,7 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
-    @cart_item = CartItem.find(item_id)
-    @items = Item.all
+    @cart_items = CartItem.all
   end
 
   def create

@@ -11,11 +11,10 @@
     </tr>
   </thead>
   <tbody>
-    <% @items.each do |item| %>
+    <% @cart_items.each do |cart_item| %>
       <tr>
-        <td><%= image_tag item.get_item_image(200, 200) %></td>
-        <td><%= item.name %></td>
-        <td><%= item.add_tax_price.to_s(:delimited) %></td>
+        <td><%= cart_item.name %></td>
+        <td><%= cart_item.add_tax_price.to_s(:delimited) %></td>
         <td></td>
       </tr>
     <% end %>
