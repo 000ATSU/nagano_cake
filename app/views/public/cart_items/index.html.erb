@@ -11,9 +11,20 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th>
-      </th>
-    </tr>
+    <% @cart_items.each do |cart_item| %>
+      <tr>
+        <th><%= image_tag cart_item.item.get_item_image(80, 80) %></th>
+        <th><%= cart_item.item.name %></th>
+        <th><%= cart_item.item.with_tax_price %></th>
+        <th>
+          <%= form_with model: cart_item, url: '/public/cart_items/:id', method: :patch do |f| %>
+            <%= f.select :amount, *[1..10] %>
+            <%= f.select :amount, options_for_select(@cart_item, {selected: cart_item.amount.to_i} ) %>
+            <%= f.submit '変更' %>
+          <% end %>
+        </th>
+        <th><%= cart_item.subtotal %></th>
+      </tr>
+    <% end %>
   </tbody>
 </table>
