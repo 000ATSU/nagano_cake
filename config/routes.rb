@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   get '/' => 'public/homes#top', as: 'root'
   get '/about' => 'public/homes#about'
 
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :items, only:[:new, :create, :index, :show, :edit, :update]
     resources :genres, only:[:index, :create, :edit, :update]
+    resources :customers, only:[:index, :show, :edit]
   end
 
   devise_for :admin, skip: [:registrations, :passwords], controllers: {

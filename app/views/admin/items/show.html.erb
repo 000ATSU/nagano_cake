@@ -1,4 +1,5 @@
 <h1>商品詳細</h1>
+<%= image_tag @item.get_item_image(200, 200) %>
 <span>商品名</span>
 <%= @item.name %><br>
 <span>商品説明</span>
@@ -13,4 +14,5 @@
 <% else %>
   <span>販売停止中</span>
 <% end %>
+<%= link_to '編集する', edit_admin_item_path(@item.id) %>
 
