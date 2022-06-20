@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/confirmation'
+  end
   get '/' => 'public/homes#top', as: 'root'
   get '/about' => 'public/homes#about'
 
@@ -13,6 +18,12 @@ Rails.application.routes.draw do
       member do
         post 'confirmation'
         get 'completion'
+      end
+    end
+    resources :customers, only:[:show, :edit, :update] do
+      member do
+        get 'confirmation'
+        patch 'withdraw'
       end
     end
   end

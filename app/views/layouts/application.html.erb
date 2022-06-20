@@ -34,7 +34,7 @@
           </li>
         <% elsif customer_signed_in? %>
           <li>
-            <%= link_to "マイページ" %>
+            <%= link_to "マイページ", public_customer_path(current_customer.id) %>
           </li>
           <li>
             <%= link_to "商品一覧",  public_items_path %>
