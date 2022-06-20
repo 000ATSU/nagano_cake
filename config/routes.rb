@@ -3,9 +3,18 @@ Rails.application.routes.draw do
   get '/about' => 'public/homes#about'
 
   namespace :public do
-    resources :cart_items, only:[:index, :update, :destroy, :destroy_all, :create]
     resources :items, only:[:index, :show]
-    resources :orders, only:[:new, :confirmation, :completion, :index, :show]
+    resources :cart_items, only:[:index, :update, :destroy, :create] do
+      member do
+        get 'destroy_all'
+      end
+    end
+    resources :orders, only:[:new, :index, :show] do
+      member do
+        post 'confirmation'
+        get 'completion'
+      end
+    end
   end
 
   namespace :admin do
