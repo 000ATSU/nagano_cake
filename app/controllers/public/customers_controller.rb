@@ -14,9 +14,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def confirmation
+    @customer = Customer.find(params[:id])
   end
-  
+
   def withdraw
+    @customer = Customer.find(params[:id])
+    @customer.update(is_valid: false)
     
   end
 
