@@ -15,6 +15,10 @@ class Public::CustomersController < ApplicationController
 
   def confirmation
   end
+  
+  def withdraw
+    
+  end
 
 private
 
