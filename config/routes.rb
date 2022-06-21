@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+
+
   namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/confirmation'
+    get 'addresses/index'
+    get 'addresses/edit'
   end
   get '/' => 'public/homes#top', as: 'root'
   get '/about' => 'public/homes#about'
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
 
   namespace :admin do

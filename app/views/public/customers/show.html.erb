@@ -13,5 +13,8 @@
 <%= @customer.telephone_number %><br>
 <span>メールアドレス</span>
 <%= @customer.email %><br>
-<%= link_to "配送先" %><br>
+<div>
+  <strong>配送先</strong>
+  <%= link_to "一覧を見る", public_addresses_path %>
+</div>
 <%= link_to "注文情報" %>
