@@ -1,2 +1,14 @@
 <h1>注文情報入力</h1>
+<%= form_with model: @order, url: confirmation_public_order_path(current_customer.id) do |f| %>
+  <div>
+    <h2>支払い方法</h2>
+    <%= f.radio_button :method_of_payment, 0 %>
+    <%= f.label :method_of_payment, "クレジットカード"%><br>
+    <%= f.radio_button :method_of_payment, 1 %>
+    <%= f.label :method_of_payment, "銀行振り込み"%>
+  </div>
 
+  <div>
+    <%= f.submit "確認画面へ進む" %>
+  </div>
+<% end %>

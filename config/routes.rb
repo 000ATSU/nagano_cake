@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
   get '/' => 'public/homes#top', as: 'root'
   get '/about' => 'public/homes#about'
 
