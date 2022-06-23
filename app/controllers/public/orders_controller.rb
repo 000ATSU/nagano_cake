@@ -7,6 +7,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirmation
+    @order = Order.new(order_params)
+    binding.pry
   end
 
   def completion
@@ -21,6 +23,6 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-  params.require(:order).permit(:method_of_payment, :selected_address, :a)
+    params.require(:order).permit(:method_of_payment)
   end
 end
