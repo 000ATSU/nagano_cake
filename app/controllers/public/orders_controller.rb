@@ -20,7 +20,6 @@ class Public::OrdersController < ApplicationController
       @order.shipping_address = current_customer.address
       @order.delivery_name = current_customer.first_name + current_customer.last_name
     end
-    binding.pry
   end
 
   def completion
