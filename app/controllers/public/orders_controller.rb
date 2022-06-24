@@ -9,18 +9,19 @@ class Public::OrdersController < ApplicationController
   def confirmation
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    if params[:order][:selected_address] == 1
-      @address = Address.find(params[:order][:address_id])
-      @order.shipping_zip_code = @address.postal_code
-      @order.shipping_address = @address.address
-      @order.delivery_name = @address.name
-    elsif params[:order][:selected_address] == 2
+    if params[:order][:selected_address] == "0"
       @order = Order.new(order_params)
       @order.shipping_zip_code = current_customer.postal_code
       @order.shipping_address = current_customer.address
       @order.delivery_name = current_customer.first_name + current_customer.last_name
+    elsif params[:order][:selected_address] == "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.shipping_zip_code = @address.postal_code
+      @order.shipping_address = @address.address
+      @order.delivery_name = @address.name
     end
   end
+    binding.pry
 
   def completion
   end
