@@ -9,9 +9,15 @@
     </tr>
   </thead>
   <tbody>
+    <% @orders.each do |order| %>
     <tr>
-    　<td></td>
+       <td><%= image_tag order.get_item_image(80, 80)%></td>
+    　 <td><%= order.name %></td>
+    　 <td><%= order.with_tax_price %></td>
+    　 <td><%= %></td>
+    　 <td><%=  %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 
@@ -25,7 +31,7 @@
   </thead>
   <tbody>
     <tr>
-      <td></td>
+      <td><%= @order.postage %></td>
     </tr>
   </tbody>
 </table>
@@ -33,11 +39,12 @@
 <div>
   <div>
     <h2>支払方法</h2>
-    <p></p>
+    <p><%= @order.method_of_payment_i18n %></p>
   </div>
   <div>
     <h2>お届け先</h2>
-    <p></p>
+    <p>〒<%= @order.shipping_zip_code %> <%= @order.shipping_address %></p>
+    <p><%= @order.delivery_name %></p>
   </div>
 </div>
 
