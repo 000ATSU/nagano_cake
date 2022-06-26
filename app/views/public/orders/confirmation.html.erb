@@ -11,11 +11,7 @@
   <tbody>
     <% @orders.each do |order| %>
     <tr>
-       <td><%= image_tag order.get_item_image(80, 80)%></td>
-    　 <td><%= order.name %></td>
-    　 <td><%= order.with_tax_price %></td>
-    　 <td><%= %></td>
-    　 <td><%=  %></td>
+      <td><%= order.current_customer.id.amount %></td>
     </tr>
     <% end %>
   </tbody>

@@ -10,8 +10,8 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.postage = "800"
-    @orders = Item.find(current_customer.cart_item_ids)
-    # @order = current_customer.cart_items
+    @orders = CartItem.all
+    binding.pry
     if params[:order][:selected_address] == "0"
       @order = Order.new(order_params)
       @order.shipping_zip_code = current_customer.postal_code
