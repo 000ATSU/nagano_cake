@@ -10,8 +10,8 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.postage = "800"
-    @orders = CartItem.all
-    binding.pry
+    @cart_items = current_customer.cart_items
+    @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
     if params[:order][:selected_address] == "0"
       @order = Order.new(order_params)
       @order.shipping_zip_code = current_customer.postal_code
@@ -23,6 +23,11 @@ class Public::OrdersController < ApplicationController
       @order.shipping_address = @address.address
       @order.delivery_name = @address.name
     end
+  end
+
+  def create
+    @order = Order.new(order_params)
+    binding.pry
   end
 
   def completion
@@ -37,6 +42,6 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-    params.require(:order).permit(:method_of_payment, :shipping_zip_code, :shipping_address, :delivery_name)
+    params.require(:order).permit(:method_of_payment, :shipping_zip_code, :shipping_address, :delivery_name, :postage, :payment_amount, :product_total, :customer_id )
   end
 end
