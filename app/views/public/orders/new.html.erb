@@ -13,7 +13,7 @@
   <div>
     <h2>お届け先</h2>
     <div>
-      <%= f.radio_button :selected_address, 0 %>
+      <%= f.radio_button :selected_address, 0, :checked => true  %>
       <%= f.label :selected_address, "ご自身の住所"%>
       <div>
         <p>〒<%= @order.shipping_zip_code %><%= @order.shipping_address %></p>

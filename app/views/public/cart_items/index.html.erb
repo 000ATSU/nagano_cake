@@ -19,7 +19,7 @@
         <th><%= cart_item.item.with_tax_price %></th>
         <th>
           <%= form_with model: cart_item, url: "/public/cart_items/#{cart_item.id}", method: :patch do |f| %>
-            <%= f.select :amount, *[1..10] %>
+            <%= f.select :amount, *[1..10], required: true %>
             <%= f.submit '変更' %>
           <% end %>
         </th>

@@ -10,7 +10,18 @@
                 <th>ステータス</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            <tr>
+                <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+                <td>
+                    〒<%= @order.shipping_zip_code %>
+                    <%= @order.shipping_address %>
+                    <%= @order.delivery_name %>
+                </td>
+                <td><%= @order.method_of_payment_i18n %></td>
+                <td><%= @order.order_status_i18n %></td>
+            </tr>
+        </tbody>
     </table>
 </div>
 <div>
@@ -23,7 +34,13 @@
                 <th><strong>ご請求額</strong></th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            <tr>
+                <td><%= @order.payment_amount - @order.postage %></td>
+                <td><%= @order.postage %></td>
+                <td><%= @order.payment_amount %></td>
+            </tr>
+        </tbody>
     </table>
 </div>
 <div>
@@ -37,6 +54,15 @@
                 <th>小計</th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+            <% @order.order_details.each do |order_detail| %>
+            <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.item.price %></td>
+                <td><%= order_detail.quantity %></td>
+                <td><%= order_detail.subtotal %></td>
+            </tr>
+            <% end %>
+        </tbody>
     </table>
 </div>

@@ -11,19 +11,23 @@
     </tr>
   </thead>
   <tbody>
+    <% @orders.each do |order| %>
     <tr>
-      <% @orders.each do |order| %>
-        <td><%= order.created_at %></td>
-        <td>
-          <%= order.shipping_zip_code %>
-          <%= order.shipping_address %>
-          <%= order.delivery_name %>
-        </td>
-        <td><%=  %></td>
-        <td><%= order.payment_amount %></td>
-        <td><%= order.order_status %></td>
-        <td><%= link_to "表示する", public_order_path(order.id) %></td>
-      <% end %>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td>
+        <p><%= order.shipping_zip_code %></p>
+        <p><%= order.shipping_address %></p>
+        <p><%= order.delivery_name %></p>
+      </td>
+      <td>
+        <% order.order_details.each do |order_detail| %>
+          <p><%= order_detail.item.name %></p>
+        <% end %>
+      </td>
+      <td><%= order.payment_amount %>円</td>
+      <td><%= order.order_status_i18n %></td>
+      <td><%= link_to "表示する", public_order_path(order.id) %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>

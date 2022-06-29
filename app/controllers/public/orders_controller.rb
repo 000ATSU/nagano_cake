@@ -27,7 +27,6 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
-    binding.pry
     @order.save
     cart_items = current_customer.cart_items
     cart_items.each do |cart_item|
@@ -51,17 +50,13 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_detail = OrderDetail.find(params[:id])
+    # binding.pry
   end
 
 private
 
   def order_params
     params.require(:order).permit(:method_of_payment, :shipping_zip_code, :shipping_address, :delivery_name, :postage, :payment_amount, :product_total, :customer_id, :order_status )
-  end
-
-  def order_detail_params
-    params.require(:order_detail).permit(:quantity, :price, :production_status, :order_id, :item_id)
   end
 
 end

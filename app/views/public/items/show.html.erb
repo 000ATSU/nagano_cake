@@ -6,6 +6,6 @@
 </div>
 <%= form_with model: @cart_item, url: '/public/cart_items', method: :post do |f| %>
   <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.select :amount, *[1..10], include_blank: "個数を選択" %>
+  <%= f.select :amount, *[1..10], include_blank: "個数を選択", required: true %>
   <%= f.submit 'カートに入れる'%>
 <% end %>
