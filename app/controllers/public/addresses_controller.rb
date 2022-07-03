@@ -1,4 +1,7 @@
 class Public::AddressesController < ApplicationController
+   before_action :authenticate_customer!
+   before_action :ensure_current_customer, {only: [:edit, :update, :create, :destroy]}
+
   def index
     @address = Address.new
     @addresses = Address.all
@@ -31,4 +34,11 @@ private
   def address_params
     params.require(:address).permit(:name, :postal_code, :address, :customer_id)
   end
+
+  def ensure_current_customer
+    if Customer.find(params[:id]) != current_user
+      redirect_to root_path
+    end
+  end
+
 end

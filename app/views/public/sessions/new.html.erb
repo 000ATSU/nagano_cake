@@ -1,20 +1,46 @@
-<h2>ログイン</h2>
-<p>会員の方はこちらからログイン</p>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class=".container">
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <h2 class="bg-info rounded-sm">
+        ログイン
+      </h2>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <h5 class="bg-info rounded-sm">
+        会員の方はこちらからログイン
+      </h5>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <table>
+        <tr>
+          <th><%= f.label :メールアドレス %></th>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :パスワード %></th>
+          <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
   </div>
-<% end %>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <h5 class="bg-info rounded-sm">
+        会員登録がお済でない方
+      </h5>
+      <%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>
 
-<p>会員登録がお済でない方</p>
-<%= render "public/shared/links" %>
+
+

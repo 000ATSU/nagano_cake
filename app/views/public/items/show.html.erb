@@ -1,11 +1,24 @@
-<%= image_tag @item.get_item_image(200, 200) %>
-<div>
-  <h1><%= @item.name %></h1>
-  <%= @item.introduction %><br>
-  ￥<%= @item.with_tax_price %>（税込）
+<div class=".container">
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-3">
+      <%= image_tag @item.get_item_image(200, 200) %>
+    </div>
+    <div class="col-3">
+      <h1><%= @item.name %></h1>
+      <p class="lead"><%= @item.introduction %></p>
+      <h4>￥<%= @item.with_tax_price %>（税込）</h4>
+    </div>
+    <div class="col-3"></div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-6"></div>
+    <div class="col-5">
+      <%= form_with model: @cart_item, url: '/public/cart_items', method: :post do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..10], include_blank: "個数を選択", required: true, class: "selectpicker" %>
+        <%= f.submit 'カートに入れる', class: "btn btn-success"%>
+      <% end %>
+    </div>
+  </div>
 </div>
-<%= form_with model: @cart_item, url: '/public/cart_items', method: :post do |f| %>
-  <%= f.hidden_field :item_id, :value => @item.id %>
-  <%= f.select :amount, *[1..10], include_blank: "個数を選択", required: true %>
-  <%= f.submit 'カートに入れる'%>
-<% end %>

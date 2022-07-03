@@ -1,4 +1,7 @@
 class Public::OrdersController < ApplicationController
+   before_action :authenticate_customer!
+   before_action :ensure_current_customer, {only: [:new, :confirmation, :create, :completion, :index, :show]}
+
   def new
     @order = Order.new
     @order.shipping_zip_code = current_customer.postal_code
@@ -9,7 +12,6 @@ class Public::OrdersController < ApplicationController
   def confirmation
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.postage = "800"
     @cart_items = current_customer.cart_items
     @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
     if params[:order][:selected_address] == "0"
@@ -23,6 +25,7 @@ class Public::OrdersController < ApplicationController
       @order.shipping_address = @address.address
       @order.delivery_name = @address.name
     end
+    @order.postage = "800"
   end
 
   def create
@@ -57,6 +60,12 @@ private
 
   def order_params
     params.require(:order).permit(:method_of_payment, :shipping_zip_code, :shipping_address, :delivery_name, :postage, :payment_amount, :product_total, :customer_id, :order_status )
+  end
+
+  def ensure_current_customer
+    if Customer.find(params[:id]) != current_user
+      redirect_to root_path
+    end
   end
 
 end

@@ -1,34 +1,56 @@
-<h1>商品一覧</h1>
-<%= link_to '+', new_admin_item_path %>
-<table>
-  <thead>
-    <tr>
-      <th>商品id</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.id %></td>
-        <td>
-          <%= link_to admin_item_path(item.id) do %>
-            <%= item.name %>
+<div class=".container">
+  <div class="row mt-5">
+    <div class="col-2"></div>
+    <div class="bg-info">
+      <h2>商品一覧</h2>
+    </div>
+    <div class="col-6"></div>
+    <div>
+      <h1>
+        <%= link_to "+", new_admin_item_path %>
+      </h1>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <table class="table">
+        <thead class="bg-secondary">
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.id %></td>
+              <td>
+                <%= link_to admin_item_path(item.id) do %>
+                  <%= item.name %>
+                <% end %>
+                </td>
+              <td><%= item.price %></td>
+              <td><%= item.genre.name %></td>
+              <td>
+                <% if item.is_active == true %>
+                  <span>販売中</span>
+                <% else %>
+                  <span>販売停止中</span>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-          </td>
-        <td><%= item.price %></td>
-        <td><%= item.genre.name %></td>
-        <td>
-          <% if item.is_active == true %>
-            <span>販売中</span>
-          <% else %>
-            <span>販売停止中</span>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="mx-auto">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

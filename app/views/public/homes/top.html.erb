@@ -1,14 +1,29 @@
-<div>
-　<p>ようこそ、ながのCAKEへ！</p>
-　<p>このサイトは、ケーキ販売のECサイトになります。</p>
-　<p>会員でない方も商品の閲覧はできますが、</p>
-　<p>購入には会員登録が必要になります。</p>
-</div>
-<h1>新着商品</h1>
-  <% @items.each do |item| %>
-    <%= link_to public_item_path(item.id) do %>
-      <%= image_tag item.get_item_image(100, 100) %>
-      <p><%= item.name %></p>
-      <p>￥<%= item.with_tax_price %></p>
+<div class=".container">
+  <div class="row mt-5">
+    <div class="mx-auto">
+    　<p>ようこそ、<strong>ながのCAKEへ！</strong></p>
+    　<p>このサイトは、ケーキ販売のECサイトになります。</p>
+    　<p>会員でない方も商品の閲覧はできますが、</p>
+    　<p>購入には会員登録が必要になります。</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-1"></div>
+    <div class="bg-info rounded-sm">
+      <h1>新着商品</h1>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-1"></div>
+    <% @items.each do |item| %>
+    <div class="mx-5">
+      <%= link_to public_item_path(item.id) do %>
+        <%= image_tag item.get_item_image(100, 100) %>
+        <p><%= item.name %></p>
+        <p>￥<%= item.with_tax_price %></p>
+      <% end %>
+    </div>
     <% end %>
-  <% end %>
+    <div class="col-1"></div>
+  </div>
+</div>

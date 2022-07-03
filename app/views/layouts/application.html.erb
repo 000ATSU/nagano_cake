@@ -12,68 +12,83 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-          <div class="row mt-5 ">
-            <div class="col-3">
-              <h1 class="navbar-brand">
-                <%= link_to "Nagano Cake", root_path %>
-              </h1>
-            </div>
-            <div class="col-9">
-              <% if admin_signed_in? %>
-              <ul class="list-unstyled list-inline">
-                <li class="list-inline-item">
-                  <%= link_to "商品一覧", admin_items_path %>
-                </li>
-                <li class="list-inline-item">
-                  <%= link_to "会員一覧", admin_customers_path %>
-                </li>
-                <li class="list-inline-item">
-                  <%= link_to "注文履歴一覧" %>
-                </li>
-                <li class="list-inline-item">
-                  <%= link_to "ジャンル一覧", admin_genres_path %>
-                </li>
-                <li class="list-inline-item">
-                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-                </li>
-              </ul>
-              <% elsif customer_signed_in? %>
-                <span>ようこそ、<%= current_customer.first_name %>さん！</span>
-                <ul class="list-unstyled list-inline">
-                  <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
-                    <%= link_to "マイページ", public_customer_path(current_customer.id) %>
-                  </li>
-                  <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
-                    <%= link_to "商品一覧", public_items_path %>
-                  </li>
-                  <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
-                    <%= link_to "カート", public_cart_items_path %>
-                  </li>
-                  <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
-                    <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete  %>
-                  </li>
-                </ul>
-              <% else %>
-                <li>
-                  <%= link_to "About", about_path %>
-                </li>
-                <li>
-                  <%= link_to "商品一覧", public_items_path %>
-                </li>
-                <li>
-                  <%= link_to "新規登録", new_customer_registration_path %>
-                </li>
-                <li>
-                  <%= link_to "ログイン", customer_session_path %>
-                </li>
-              <% end %>
-            </div>
+      <div class=".container-fluid border-bottom-1 border border-dark">
+        <div class="row mt-5">
+          <div class="col">
+            <h1 class="navbar-brand ml-5">
+              <%= link_to "Nagano Cake", root_path %>
+            </h1>
           </div>
+          <% if admin_signed_in? %>
+          <div class="float-right">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "商品一覧", admin_items_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "会員一覧", admin_customers_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "注文履歴一覧", admin_root_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "ジャンル一覧", admin_genres_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+            </ul>
+          </div>
+          <% elsif customer_signed_in? %>
+          <div class="mr-5">
+            <p class="lead">ようこそ、<%= current_customer.first_name %>さん！</p>
+          </div>
+          <div class="float-right">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "マイページ", public_customer_path(current_customer.id) %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "商品一覧", public_items_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "カート", public_cart_items_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "ログアウト",  destroy_customer_session_path, method: :delete  %>
+              </li>
+            </ul>
+          </div>
+          <% else %>
+          <div class="float-right">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "About", about_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "商品一覧", public_items_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "新規登録", new_customer_registration_path %>
+              </li>
+              <li class="list-inline-item btn btn-default btn-outline-dark mr-5">
+                <%= link_to "ログイン", customer_session_path %>
+              </li>
+            </ul>
+          </div>
+          <% end %>
         </div>
-      </nav>
+      </div>
     </header>
     <%= yield %>
+    <footer>
+      <div class=".container border-top-1 border border-dark fixed-bottom">
+        <div class="row">
+          <div class="mx-auto mt-3">
+            <h5>©ながのCAKE</h5>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
