@@ -5,7 +5,7 @@
     </div>
     <div class="col-8"></div>
     <div>
-      <%= link_to "カートを空にする",  destroy_all_public_cart_item_path(current_customer.id), class: "btn btn-danger" %>
+      <%= link_to "カートを空にする",  destroy_all_cart_item_path(current_customer.id), class: "btn btn-danger" %>
     </div>
   </div>
   <div class="row">
@@ -28,14 +28,14 @@
               <th><%= cart_item.item.name %></th>
               <th><%= cart_item.item.with_tax_price %></th>
               <th>
-                <%= form_with model: cart_item, url: "/public/cart_items/#{cart_item.id}", method: :patch do |f| %>
+                <%= form_with model: cart_item, url: "/cart_items/#{cart_item.id}", method: :patch do |f| %>
                   <%= f.select :amount, *[1..10], required: true %>
-                  <%= f.submit '変更' %>
+                  <%= f.submit '変更', class: "btn btn-success" %>
                 <% end %>
               </th>
               <th><%= cart_item.subtotal %></th>
               <th>
-                <%= link_to '削除', "/public/cart_items/#{cart_item.id}", method: :delete, class: "btn btn-danger" %>
+                <%= link_to '削除', "/cart_items/#{cart_item.id}", method: :delete, class: "btn btn-danger" %>
               </th>
             </tr>
           <% end %>
@@ -53,7 +53,7 @@
       <table class="table table-bordered">
         <tr>
           <th>合計金額</th>
-          <td><%= @total %></td>
+          <td><strong><%= @total %></strong></td>
         </tr>
       </table>
     </div>
@@ -61,7 +61,7 @@
   <div class="row mt-3">
     <div class="mx-auto">
       <% if @cart_items != [] %>
-        <%= link_to "情報入力に進む",  new_public_order_path, class: "btn btn-success" %>
+        <%= link_to "情報入力に進む",  new_order_path, class: "btn btn-success" %>
       <% end %>
     </div>
   </div>

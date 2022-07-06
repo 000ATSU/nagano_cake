@@ -76,7 +76,7 @@
 
   <div class="row mt-3">
     <div class="mx-auto">
-      <%= form_with model: @order, url: '/public/orders' do |f| %>
+      <%= form_with model: @order, url: '/orders' do |f| %>
         <%= f.hidden_field :shipping_zip_code %>
         <%= f.hidden_field :shipping_address %>
         <%= f.hidden_field :delivery_name %>

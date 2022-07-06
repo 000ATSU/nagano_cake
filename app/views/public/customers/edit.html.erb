@@ -8,7 +8,7 @@
   <div class="row mt-3">
     <div class="col-1"></div>
     <div>
-      <%= form_with model: @customer, url: "/public/customers/#{current_customer.id}" do |f| %>
+      <%= form_with model: @customer, url: "/customers/#{current_customer.id}" do |f| %>
       <table class="table table-borderless">
         <tr>
           <th>氏名</th>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <td><%= f.submit "編集内容を保存", class: "btn btn-success" %></td>
-          <td><%= link_to "退会する", confirmation_public_customer_path(current_customer.id), class: "btn btn-danger" %></td>
+          <td><%= link_to "退会する", confirmation_customer_path(current_customer.id), class: "btn btn-danger" %></td>
         </tr>
       </table>
       <% end %>

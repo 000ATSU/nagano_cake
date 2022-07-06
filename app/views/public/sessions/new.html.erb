@@ -16,7 +16,7 @@
   <div class="row mt-5">
     <div class="mx-auto">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <table>
+      <table class="table table-borderless">
         <tr>
           <th><%= f.label :メールアドレス %></th>
           <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>

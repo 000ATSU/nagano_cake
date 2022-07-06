@@ -17,7 +17,7 @@
     <div class="col-1"></div>
     <% @items.each do |item| %>
     <div class="mx-5">
-      <%= link_to public_item_path(item.id) do %>
+      <%= link_to item_path(item.id) do %>
         <%= image_tag item.get_item_image(100, 100) %>
         <p><%= item.name %></p>
         <p>￥<%= item.with_tax_price %></p>

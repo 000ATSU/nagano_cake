@@ -14,7 +14,7 @@
   <div class="row mt-5">
     <div class="col-6"></div>
     <div class="col-5">
-      <%= form_with model: @cart_item, url: '/public/cart_items', method: :post do |f| %>
+      <%= form_with model: @cart_item, url: '/cart_items', method: :post do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
         <%= f.select :amount, *[1..10], include_blank: "個数を選択", required: true, class: "selectpicker" %>
         <%= f.submit 'カートに入れる', class: "btn btn-success"%>

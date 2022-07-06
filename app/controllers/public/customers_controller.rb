@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = Customer.find(current_customer.id)
     @customer.update(customer_params)
-    redirect_to public_customer_path(current_customer.id)
+    redirect_to customer_path(current_customer.id)
   end
 
   def confirmation
@@ -34,7 +34,7 @@ private
   end
 
   def ensure_current_customer
-    if Customer.find(params[:id]) != current_user
+    if Customer.find(params[:id]) != current_customer
       redirect_to root_path
     end
   end

@@ -12,7 +12,7 @@
        <table class="table table-borderless">
          <tr>
            <th>ジャンル名</th>
-           <td><%= f.text_field :name %></td>
+           <td><%= f.text_field :name, required: true %></td>
            <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
          </tr>
        </table>

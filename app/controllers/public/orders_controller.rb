@@ -1,6 +1,5 @@
 class Public::OrdersController < ApplicationController
    before_action :authenticate_customer!
-   before_action :ensure_current_customer, {only: [:new, :confirmation, :create, :completion, :index, :show]}
 
   def new
     @order = Order.new
@@ -41,19 +40,18 @@ class Public::OrdersController < ApplicationController
     @order_detail.save
     end
     current_customer.cart_items.destroy_all
-    redirect_to completion_public_order_path(current_customer.id)
+    redirect_to completion_order_path(current_customer.id)
   end
 
   def completion
   end
 
   def index
-    @orders = Order.all
+    @orders = current_customer.orders
   end
 
   def show
     @order = Order.find(params[:id])
-    # binding.pry
   end
 
 private

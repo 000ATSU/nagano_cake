@@ -19,26 +19,26 @@
             <th>ステータス</th>
           </tr>
         </thead>
+        <% @customers.each do |customer| %>
         <tbody>
-          <% @customers.each do |customer| %>
-            <td><%= customer.id %></td>
-            <td>
-              <%= link_to admin_customer_path(customer.id) do %>
-                <%= customer.first_name %><%= customer.last_name %>
-              <% end %>
-            </td>
-            <td></td>
-            <td><%= customer.email %></td>
-            <td></td>
-            <td>
-              <% if customer.is_active == true %>
-                <span class="text-success">有効</span>
-              <% else %>
-                <span class="text-secondary">退会</span>
-              <% end %>
-            </td>
-          <% end %>
+          <td><%= customer.id %></td>
+          <td>
+            <%= link_to admin_customer_path(customer.id) do %>
+              <%= customer.first_name %><%= customer.last_name %>
+            <% end %>
+          </td>
+          <td></td>
+          <td><%= customer.email %></td>
+          <td></td>
+          <td>
+            <% if customer.is_active == true %>
+              <span class="text-success">有効</span>
+            <% else %>
+              <span class="text-secondary">退会</span>
+            <% end %>
+          </td>
         </tbody>
+        <% end %>
       </table>
     </div>
   </div>

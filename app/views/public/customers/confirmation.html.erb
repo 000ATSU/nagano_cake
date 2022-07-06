@@ -16,11 +16,11 @@
   <div class="row">
     <div class="col-4"></div>
     <div class="mx-auto">
-      <%= link_to "退会しない",  public_customer_path, class: "btn btn-primary" %>
+      <%= link_to "退会しない",  customer_path, class: "btn btn-primary" %>
     </div>
     <div class="mx-auto"></div>
     <div class="mx-auto">
-      <%= link_to "退会する", "/public/customers/#{current_customer.id}/withdraw", method: :patch, class: "btn btn-danger" %>
+      <%= link_to "退会する", withdraw_customer_path(current_customer.id), method: :patch, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
     </div>
     <div class="col-4"></div>
   </div>
